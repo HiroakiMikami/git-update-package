@@ -1,0 +1,33 @@
+#! /bin/bash
+
+target=$1
+
+root=${HOME}/${target}
+
+# Update the content
+if [ -e ${root}/.update-git-repository/update.sh ]
+then
+    ${root}/.update-git-repository/update.sh
+fi
+
+# Commit all changes
+git -C ${root} add .
+if [ -e ${root}/.update-git-repository/commit-message.sh ]
+then
+    git -C ${root} commit -a -m "$(${root}/.update-git-repository/commit-message.sh)"
+else
+    git -C ${root} commit -a -m "$(LANG=C date)"
+fi
+
+if git -C ${root} remote | grep "^origin$"
+then
+    echo "There is no remote repository"
+    exit 0
+else
+    # Pull and push to the repository if there are a remote repository
+    git -C ${root} pull --rebase origin master
+    if [ -e ${root}/.update-git-repository/enable-auto-push ]
+    then
+        git -C ${root} push origin master
+    fi
+fi

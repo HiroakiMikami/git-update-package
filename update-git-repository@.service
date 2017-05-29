@@ -1,0 +1,9 @@
+[Unit]
+Description=Update a Git epository
+
+[Service]
+Type=simple
+ExecStart=/usr/local/bin/update-git-repository %i
+
+[Install]
+WantedBy=default.target
