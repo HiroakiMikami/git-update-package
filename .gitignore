@@ -1,0 +1,7 @@
+*
+!.gitignore
+!LICENSE
+!PKGBUILD
+!update-git-repository
+!update-git-repository@.service
+!update-git-repository@.timer
