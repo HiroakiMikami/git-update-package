@@ -1,6 +1,6 @@
 # Maintainer: Your Name <youremail@domain.com>
 pkgname=update-git-repository
-pkgver=r3.cf5c103
+pkgver=r3.c5577e1
 pkgrel=1
 pkgdesc=""
 arch=("x86_64")
